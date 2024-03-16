@@ -96,7 +96,7 @@ namespace OrderFoodOnlineMicroservices.Services.CouponAPI.Controllers
         }
 
         [HttpPut]
-        public ResponseDto Update([FromBody] CouponDto couponDto)
+        public ResponseDto Put([FromBody] CouponDto couponDto)
         {
             try
             {
