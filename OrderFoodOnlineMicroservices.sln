@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{67
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderFoodOnlineMicroservices.Services.CouponAPI", "OrderFoodOnlineMicroservices.Services.CouponAPI\OrderFoodOnlineMicroservices.Services.CouponAPI.csproj", "{7AF33016-4C39-460D-ABBF-299A2048677A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderFoodOnlineMicroservices.Web", "OrderFoodOnlineMicroservices.Web\OrderFoodOnlineMicroservices.Web.csproj", "{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,11 +25,19 @@ Global
 		{7AF33016-4C39-460D-ABBF-299A2048677A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF33016-4C39-460D-ABBF-299A2048677A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF33016-4C39-460D-ABBF-299A2048677A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7AF33016-4C39-460D-ABBF-299A2048677A} = {673D3D7C-0FB3-4ED0-BFF9-2450C4005AB2}
+		{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED} = {4023110B-4F61-41CA-8B49-C013D7A85E8D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAEB7894-6139-4316-9D43-5C32B4AE31C6}
 	EndGlobalSection
 EndGlobal
