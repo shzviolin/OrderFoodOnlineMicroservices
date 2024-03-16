@@ -1,0 +1,6 @@
+@OrderFoodOnlineMicroservices.Services.CouponAPI_HostAddress = http://localhost:5278
+
+GET {{OrderFoodOnlineMicroservices.Services.CouponAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

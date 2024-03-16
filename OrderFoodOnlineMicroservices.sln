@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{4023110B-4F61-41CA-8B49-C013D7A85E8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{3CB850A3-7EFC-4676-BB75-792246DA1B96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{B06F9EDB-EE7A-4428-82F7-21C8D6DAC6B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{673D3D7C-0FB3-4ED0-BFF9-2450C4005AB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderFoodOnlineMicroservices.Services.CouponAPI", "OrderFoodOnlineMicroservices.Services.CouponAPI\OrderFoodOnlineMicroservices.Services.CouponAPI.csproj", "{7AF33016-4C39-460D-ABBF-299A2048677A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7AF33016-4C39-460D-ABBF-299A2048677A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AF33016-4C39-460D-ABBF-299A2048677A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AF33016-4C39-460D-ABBF-299A2048677A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AF33016-4C39-460D-ABBF-299A2048677A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7AF33016-4C39-460D-ABBF-299A2048677A} = {673D3D7C-0FB3-4ED0-BFF9-2450C4005AB2}
+	EndGlobalSection
+EndGlobal
