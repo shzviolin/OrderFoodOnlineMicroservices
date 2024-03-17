@@ -7,7 +7,7 @@ using OrderFoodOnlineMicroservices.Services.CouponAPI.Models.Dto;
 
 namespace OrderFoodOnlineMicroservices.Services.CouponAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/coupon")]
     [ApiController]
     public class CouponAPIController : ControllerBase
     {
