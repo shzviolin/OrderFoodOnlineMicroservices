@@ -23,6 +23,10 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
             {
                 coupons = JsonConvert.DeserializeObject<List<CouponDto>>(Convert.ToString(response.Result));
             }
+            else
+            {
+                TempData["error"] = response?.Message;
+            }
 
             return View(coupons);
         }
@@ -41,7 +45,12 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
                 ResponseDto? response = await _couponService.CreateCouponAsync(coupon);
                 if (response != null && response.IsSuccess)
                 {
+                    TempData["success"] = "Coupon created successfully";
                     return RedirectToAction(nameof(CouponIndex));
+                                    }
+                else
+                {
+                    TempData["error"] = response?.Message;
                 }
 
             }
@@ -56,8 +65,11 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
             if (response != null && response.IsSuccess)
             {
                 CouponDto? coupon = JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(response.Result));
-
                 return View(coupon);
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
             }
             return NotFound();
         }
@@ -68,7 +80,12 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
 
             if (response != null && response.IsSuccess)
             {
+                TempData["success"] = "Coupon updated successfully";
                 return RedirectToAction(nameof(CouponIndex));
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
             }
             return View(coupon);
         }
@@ -81,8 +98,11 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
             if (response != null && response.IsSuccess)
             {
                 CouponDto? coupon = JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(response.Result));
-
                 return View(coupon);
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
             }
             return NotFound();
         }
@@ -94,7 +114,12 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
 
             if (response != null && response.IsSuccess)
             {
+                TempData["success"] = "Coupon deleted successfully";
                 return RedirectToAction(nameof(CouponIndex));
+            }
+            else
+            {
+                TempData["error"] = response?.Message;
             }
             return View(coupon);
         }
