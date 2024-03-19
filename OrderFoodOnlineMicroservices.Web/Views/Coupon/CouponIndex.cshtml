@@ -13,9 +13,8 @@
             <div class="col-6">
             </div>
             <div class="col-6 text-end">
-                <a class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Coupon</a>
-
-            </div>
+                <a asp-action="CouponCreate" class="btn btn-outline-primary"><i class="bi bi-plus-square"></i> Create New Coupon</a>
+            </div>  
         </div>
         <table class="table">
             <thead>
@@ -33,7 +32,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var coupon in Model.ToList())
+                @foreach (var coupon in Model)
                 {
                     <tr>
                         <td>

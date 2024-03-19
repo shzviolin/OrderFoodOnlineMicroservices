@@ -26,5 +26,27 @@ namespace OrderFoodOnlineMicroservices.Web.Controllers
 
             return View(coupons);
         }
+
+
+        public async Task<IActionResult> CouponCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CouponCreate(CouponDto coupon)
+        {
+            if (ModelState.IsValid)
+            {
+                ResponseDto? response = await _couponService.CreateCouponAsync(coupon);
+                if (response != null && response.IsSuccess)
+                {
+                    return RedirectToAction(nameof(CouponIndex));
+                }
+
+            }
+
+            return View(coupon);
+        }
     }
 }
