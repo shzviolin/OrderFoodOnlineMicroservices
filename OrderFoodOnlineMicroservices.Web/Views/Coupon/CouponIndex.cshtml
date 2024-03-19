@@ -29,6 +29,7 @@
                         Minimum Amount
                     </th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -45,7 +46,12 @@
                             @coupon.MinAmount.ToString("c")
                         </td>
                         <td>
-                            <a class="btn btn-danger">
+                            <a asp-action="CouponUpdate" asp-route-couponId="@coupon.CouponId" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a asp-action="CouponDelete" asp-route-couponId="@coupon.CouponId" class="btn btn-danger">
                                 <i class="bi bi-trash"></i>
                             </a>
                         </td>
