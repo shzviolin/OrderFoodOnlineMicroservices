@@ -16,7 +16,7 @@ namespace OrderFoodOnlineMicroservices.Services.AuthAPI.Service
 
         public AuthService(
             AppDbContext db,
-            UserManager<ApplicationUser> userManager, 
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IJwtTokenGenerator jwtTokenGenerator
             )
@@ -27,6 +27,20 @@ namespace OrderFoodOnlineMicroservices.Services.AuthAPI.Service
             _jwtTokenGenerator = jwtTokenGenerator;
         }
 
+        public async Task<bool> AssignRole(string email, string roleName)
+        {
+            var user = await _db.ApplicationUsers.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
+            if (user != null)
+            {
+                if (!_roleManager.RoleExistsAsync(roleName).GetAwaiter().GetResult())
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+                await _userManager.AddToRoleAsync(user, roleName);
+                return true;
+            }
+            return false;
+        }
 
         public async Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto)
         {
@@ -44,7 +58,7 @@ namespace OrderFoodOnlineMicroservices.Services.AuthAPI.Service
             }
 
             //if user was faound, generate JWT token
-            var token= _jwtTokenGenerator.GenerateToken(user);
+            var token = _jwtTokenGenerator.GenerateToken(user);
 
             UserDto userDto = new()
             {
