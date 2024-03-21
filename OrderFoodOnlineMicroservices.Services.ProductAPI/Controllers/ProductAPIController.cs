@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrderFoodOnlineMicroservices.Services.ProductAPI.Data;
@@ -9,6 +10,7 @@ namespace OrderFoodOnlineMicroservices.Services.ProductAPI.Controllers
 {
     [Route("api/product")]
     [ApiController]
+    [Authorize]
     public class ProductAPIController : ControllerBase
     {
         private readonly AppDbContext _db;
@@ -58,6 +60,7 @@ namespace OrderFoodOnlineMicroservices.Services.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="ADMIN")]
         public ResponseDto Post([FromBody] ProductDto productDto)
         {
             try
@@ -78,6 +81,7 @@ namespace OrderFoodOnlineMicroservices.Services.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Put([FromBody] ProductDto productDto)
         {
             try
@@ -98,6 +102,8 @@ namespace OrderFoodOnlineMicroservices.Services.ProductAPI.Controllers
         }
 
         [HttpDelete]
+        [Route("{id:int}")]
+        [Authorize(Roles = "ADMIN")]
         public ResponseDto Delete(int id)
         {
             try
