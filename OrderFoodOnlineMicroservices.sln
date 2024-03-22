@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderFoodOnlineMicroservice
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderFoodOnlineMicroservices.Services.AuthAPI", "OrderFoodOnlineMicroservices.Services.AuthAPI\OrderFoodOnlineMicroservices.Services.AuthAPI.csproj", "{5647E11E-5FFB-4BEE-AD37-394A97CE5C29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderFoodOnlineMicroservices.Services.ProductAPI", "OrderFoodOnlineMicroservices.Services.ProductAPI\OrderFoodOnlineMicroservices.Services.ProductAPI.csproj", "{FC73E1FD-3C91-46DA-A5E6-980C14604053}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderFoodOnlineMicroservices.Services.ProductAPI", "OrderFoodOnlineMicroservices.Services.ProductAPI\OrderFoodOnlineMicroservices.Services.ProductAPI.csproj", "{FC73E1FD-3C91-46DA-A5E6-980C14604053}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderFoodOnlineMicroservices.Services.ShoppingCartAPI", "OrderFoodOnlineMicroservices.Services.ShoppingCartAPI\OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.csproj", "{40197DDC-38E0-4F5F-B69F-44A948CFBE81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{FC73E1FD-3C91-46DA-A5E6-980C14604053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC73E1FD-3C91-46DA-A5E6-980C14604053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC73E1FD-3C91-46DA-A5E6-980C14604053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40197DDC-38E0-4F5F-B69F-44A948CFBE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40197DDC-38E0-4F5F-B69F-44A948CFBE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40197DDC-38E0-4F5F-B69F-44A948CFBE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40197DDC-38E0-4F5F-B69F-44A948CFBE81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{70A0A5A9-EC14-4188-BF0A-7F15E042B5ED} = {4023110B-4F61-41CA-8B49-C013D7A85E8D}
 		{5647E11E-5FFB-4BEE-AD37-394A97CE5C29} = {673D3D7C-0FB3-4ED0-BFF9-2450C4005AB2}
 		{FC73E1FD-3C91-46DA-A5E6-980C14604053} = {673D3D7C-0FB3-4ED0-BFF9-2450C4005AB2}
+		{40197DDC-38E0-4F5F-B69F-44A948CFBE81} = {673D3D7C-0FB3-4ED0-BFF9-2450C4005AB2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAEB7894-6139-4316-9D43-5C32B4AE31C6}
