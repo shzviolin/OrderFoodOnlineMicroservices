@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Data;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Models;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Models.Dto;
+using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Service.IService;
 using System.Reflection.PortableExecutable;
 
 namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
@@ -15,12 +16,21 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
     {
         private readonly AppDbContext _db;
         private readonly IMapper _mapper;
+        private readonly IProductService _productService;
+        private readonly ICouponService _couponService;
         private ResponseDto _response;
 
-        public CartAPIController(AppDbContext db, IMapper mapper)
+        public CartAPIController(
+            AppDbContext db,
+            IMapper mapper,
+            IProductService productService,
+            ICouponService couponService
+            )
         {
             _db = db;
             _mapper = mapper;
+            _productService = productService;
+            _couponService = couponService;
             _response = new ResponseDto();
         }
 
@@ -36,10 +46,27 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
                 };
                 cart.CartDetails = _mapper.Map<IEnumerable<CartDetailsDto>>(_db.CartDetails.Where(x => x.CartHeaderId == cart.CartHeader.CartHeaderId));
 
+                IEnumerable<ProductDto> products = await _productService.GetProductsAsync();
+
+
                 foreach (var item in cart.CartDetails)
                 {
+                    item.Product = products.FirstOrDefault(x => x.ProductId == item.ProductId);
                     cart.CartHeader.CartTotal += (item.Count * item.Product.Price);
                 }
+
+                //apply coupon if any
+                if (!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
+                {
+                    CouponDto coupon = await _couponService.GetCouponAsync(cart.CartHeader.CouponCode);
+                    if (coupon != null && cart.CartHeader.CartTotal > coupon.MinAmount)
+                    {
+                        cart.CartHeader.CartTotal -= coupon.DiscountAmount;
+                        cart.CartHeader.Discount = coupon.DiscountAmount;
+                    }
+                }
+
+                _response.Result = cart;
             }
             catch (Exception ex)
             {
@@ -49,6 +76,28 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
 
             return _response;
         }
+
+        [HttpPost("ApplyCoupon")]
+        public async Task<object> ApplyCoupon([FromBody] CartDto cartDto)
+        {
+            try
+            {
+                var cartFromDb = await _db.CartHeaders.FirstAsync(x => x.UserId == cartDto.CartHeader.UserId);
+                cartFromDb.CouponCode = cartDto.CartHeader.CouponCode;
+                _db.CartHeaders.Update(cartFromDb);
+                await _db.SaveChangesAsync();
+
+                _response.Result = true;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message.ToString();
+            }
+
+            return _response;
+        }
+
 
         [HttpPost("CartUpsert")]
         public async Task<ResponseDto> CartUpsert(CartDto cartDto)
