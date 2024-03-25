@@ -5,6 +5,7 @@ using Microsoft.OpenApi.Models;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Data;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Extensions;
+using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.RabbitMQSender;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Service;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Service.IService;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Utility;
@@ -31,6 +32,8 @@ builder.Services.AddScoped<BackendApiAuthenticationHttpClientHandler>();
 
 builder.Services.AddHttpClient("Product", x => x.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ProductAPI"])).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
 builder.Services.AddHttpClient("Coupon", x => x.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponAPI"])).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
+
+builder.Services.AddSingleton<IRabbitMQCartMessageSender, RabbitMQCartMessageSender>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

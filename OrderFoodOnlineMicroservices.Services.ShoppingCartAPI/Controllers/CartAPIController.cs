@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Data;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Models;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Models.Dto;
+using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.RabbitMQSender;
 using OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Service.IService;
 using System.Reflection.PortableExecutable;
 
@@ -18,19 +19,25 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
         private readonly IMapper _mapper;
         private readonly IProductService _productService;
         private readonly ICouponService _couponService;
+        private readonly IRabbitMQCartMessageSender _rabbitMQCartMessageSender;
+        private readonly IConfiguration _configuration;
         private ResponseDto _response;
 
         public CartAPIController(
             AppDbContext db,
             IMapper mapper,
             IProductService productService,
-            ICouponService couponService
+            ICouponService couponService,
+            IRabbitMQCartMessageSender rabbitMQCartMessageSender,
+            IConfiguration configuration
             )
         {
             _db = db;
             _mapper = mapper;
             _productService = productService;
             _couponService = couponService;
+            _rabbitMQCartMessageSender = rabbitMQCartMessageSender;
+            _configuration = configuration;
             _response = new ResponseDto();
         }
 
@@ -86,6 +93,26 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
                 cartFromDb.CouponCode = cartDto.CartHeader.CouponCode;
                 _db.CartHeaders.Update(cartFromDb);
                 await _db.SaveChangesAsync();
+
+                _response.Result = true;
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message.ToString();
+            }
+
+            return _response;
+        }
+
+        [HttpPost("EmailCartRequest")]
+        public async Task<object> EmailCartRequest([FromBody] CartDto cartDto)
+        {
+            try
+            {
+                var queueName = _configuration.GetValue<string>("QueueNames:EmailShoppingCart");
+
+                _rabbitMQCartMessageSender.SendMessage(cartDto, queueName);
 
                 _response.Result = true;
             }

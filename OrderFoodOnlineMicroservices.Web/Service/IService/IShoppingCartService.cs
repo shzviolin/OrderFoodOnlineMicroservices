@@ -8,5 +8,6 @@ namespace OrderFoodOnlineMicroservices.Web.Service.IService
         Task<ResponseDto?> UpsertCartAsync(CartDto cartDto);
         Task<ResponseDto?> RemoveFromCartAsync(int cartDetailsId);
         Task<ResponseDto?> ApplyCouponsAsync(CartDto cartDto);
+        Task<ResponseDto?> EmailCart(CartDto cartDto);
     }
 }

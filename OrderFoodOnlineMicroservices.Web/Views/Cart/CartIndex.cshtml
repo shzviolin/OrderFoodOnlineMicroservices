@@ -3,7 +3,7 @@
 
 @if (Model.CartHeader != null && Model.CartDetails.Any())
 {
-    <form method="post">
+    <form method="post" asp-action="EmailCart">
         <input asp-for="CartHeader.UserId" hidden />
         <input asp-for="CartHeader.CartHeaderId" hidden />
         <br />
