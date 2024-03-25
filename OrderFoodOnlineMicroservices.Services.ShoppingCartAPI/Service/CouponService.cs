@@ -19,7 +19,7 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Service
             var response = await client.GetAsync($"/api/coupon/GetByCode/{couponCode}");
             var apiContent = await response.Content.ReadAsStringAsync();
             var apiResponse = JsonConvert.DeserializeObject<ResponseDto>(apiContent);
-            if (apiResponse.IsSuccess)
+            if (apiResponse!=null && apiResponse.IsSuccess)
             {
                 return JsonConvert.DeserializeObject<CouponDto>(Convert.ToString(apiResponse.Result));
             }
