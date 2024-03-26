@@ -110,7 +110,7 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.Controllers
         {
             try
             {
-                var queueName = _configuration.GetValue<string>("QueueNames:EmailShoppingCart");
+                var queueName = _configuration.GetValue<string>("QueueNames:EmailShoppingCartQueue");
 
                 _rabbitMQCartMessageSender.SendMessage(cartDto, queueName);
 

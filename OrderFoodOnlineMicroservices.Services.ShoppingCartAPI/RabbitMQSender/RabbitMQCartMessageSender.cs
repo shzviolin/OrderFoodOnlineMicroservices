@@ -37,7 +37,7 @@ namespace OrderFoodOnlineMicroservices.Services.ShoppingCartAPI.RabbitMQSender
             var jsonMessage = JsonConvert.SerializeObject(message);
 
             var body = Encoding.UTF8.GetBytes(jsonMessage);
-            channel.BasicPublish(exchange: "", routingKey: queueName, basicProperties: null, body: body);
+            channel.BasicPublish(exchange: string.Empty, routingKey: queueName, basicProperties: null, body: body);
         }
     }
 }
